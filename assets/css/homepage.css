@@ -1,0 +1,664 @@
+:root {
+	--main-color: #1E3A8A;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	font-family: 'Inter', sans-serif !important;
+}
+
+.navbar-brand {
+	font-weight: 700;
+}
+
+.nav-link.active {
+	color: #0d6efd !important;
+}
+
+.card-shadow {
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 576px) {
+	.navbar-brand {
+		font-size: 1.05rem;
+	}
+}
+
+.role-login {
+	margin-top: 20px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	flex-direction: row;
+	margin-bottom: 20px;
+}
+
+.card-img-top {
+	height: 250px;
+	object-fit: cover;
+	transition: transform 0.4s ease, filter 0.3s ease;
+	border: 3px solid #1E3A8A;
+}
+
+.card:hover .card-img-top {
+	transform: scale(1.05);
+	filter: brightness(1.1);
+}
+
+.card {
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-primary {
+	transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+	background-color: #0d6efd;
+	color: #fff;
+	transform: scale(1.05);
+}
+
+.hero-title {
+	animation: fadeDown 1s ease-out;
+}
+
+.hero-sub {
+	animation: fadeUp 1.2s ease-out;
+}
+
+@keyframes fadeDown {
+	from {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.btn-light {
+	animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.05);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+.card-summary {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	/* optional spacing */
+	gap: 10px;
+	/* space between cards */
+}
+
+.card-summary-item {
+	flex: 1;
+	/* makes them share equal width */
+	padding: 15px;
+	background: #f5f5f5;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.recent-orders {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+.recent-orders table,
+tr,
+td,
+th {
+	border: 1px solid black;
+}
+
+.recent-orders td,
+th {
+	padding: 10px;
+}
+
+.recent-orders th {
+	font-size: 12;
+}
+
+.sales-overview {
+	margin-top: 30px;
+	padding-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+.recent-orders button {
+	background-color: #f44336;
+	/* Red */
+	color: #fff;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: all 0.3s ease;
+	margin-bottom: 10px;
+}
+
+.recent-orders button:hover {
+	background-color: #d32f2f;
+	transform: scale(1.05);
+}
+
+.recent-orders button:active {
+	background-color: #b71c1c;
+	transform: scale(0.98);
+}
+
+.addprod-container {
+	max-width: 650px;
+	margin: 100px auto;
+	background: #fff;
+	border-radius: 12px;
+	padding: 30px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.addprod-title {
+	text-align: center;
+	font-size: 1.8rem;
+	color: #b20000;
+	font-weight: bold;
+	margin-bottom: 25px;
+}
+
+.addprod-form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.addprod-group {
+	display: flex;
+	flex-direction: column;
+}
+
+.addprod-label {
+	margin-bottom: 6px;
+	font-weight: 600;
+	color: #222;
+}
+
+.addprod-input,
+.addprod-textarea,
+.addprod-file {
+	padding: 10px 12px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	font-size: 1rem;
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.addprod-input:focus,
+.addprod-textarea:focus {
+	outline: none;
+	border-color: #b20000;
+	box-shadow: 0 0 5px rgba(178, 0, 0, 0.2);
+}
+
+.addprod-textarea {
+	resize: none;
+}
+
+.addprod-buttons {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.addprod-btn {
+	padding: 10px 18px;
+	border-radius: 10px;
+	text-decoration: none;
+	text-align: center;
+	font-weight: 600;
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.addprod-btn-save {
+	background-color: #b20000;
+	color: #fff;
+}
+
+.addprod-btn-save:hover {
+	background-color: #8c0000;
+	transform: scale(1.05);
+}
+
+.addprod-btn-cancel {
+	background-color: #f5f5f5;
+	color: #333;
+	border: 1px solid #ccc;
+}
+
+.addprod-btn-cancel:hover {
+	background-color: #ddd;
+	transform: scale(1.05);
+}
+
+/* Container & Card */
+.epc-card-container {
+	display: flex;
+	justify-content: center;
+	padding: 30px 10px;
+	background-color: #f2f2f2;
+	font-family: Arial, sans-serif;
+	margin-top: 50px;
+}
+
+.epc-card.epc-card-small {
+	display: flex;
+	flex-direction: row;
+	max-width: 100%;
+	background-color: #fff;
+	border-radius: 12px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	overflow: visible;
+}
+
+.epc-card-image {
+	background-color: #b30000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 15px;
+}
+
+.epc-card-image img {
+	width: 300px;
+	height: auto;
+	border-radius: 10px;
+	border: 2px solid #fff;
+	object-fit: cover;
+	z-index: 9999;
+}
+
+.image-checkbox {
+	display: inline-block;
+	cursor: pointer;
+	margin: 10px;
+	position: relative;
+}
+
+.image-checkbox input[type="checkbox"] {
+	display: none;
+	/* hide the real checkbox */
+}
+
+.image-checkbox img {
+	width: 200px;
+	border-radius: 10px;
+	transition: all 0.3s ease;
+	border: 4px solid transparent;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-checkbox img:hover {
+	transform: scale(1.05);
+}
+
+.image-checkbox input[type="checkbox"]:checked+img {
+	transform: scale(3);
+	border: 1px solid red;
+}
+
+.epc-card-details {
+	flex: 2;
+	padding: 15px 20px;
+}
+
+.epc-card-title,
+h3 {
+	color: #b30000;
+	margin-bottom: 12px;
+	font-size: 20px;
+}
+
+/* Form layout */
+.epc-card-form {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.epc-form-row {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.epc-form-col {
+	flex: 1;
+	min-width: 120px;
+}
+
+.epc-form-col-full {
+	width: 100%;
+}
+
+/* Input & Label */
+.epc-label {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.epc-input,
+.epc-textarea {
+	padding: 6px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	width: 100%;
+	font-size: 13px;
+	box-sizing: border-box;
+}
+
+.epc-textarea {
+	min-height: 50px;
+	resize: vertical;
+}
+
+/* Button */
+.epc-btn {
+	padding: 10px;
+	background-color: #b30000;
+	color: #fff;
+	font-size: 14px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.epc-btn:hover {
+	background-color: #800000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.epc-card.epc-card-small {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.epc-card-image {
+		width: 100%;
+		padding: 10px 0;
+	}
+
+	.epc-form-row {
+		flex-direction: column;
+	}
+}
+
+.sales-report-container {
+	max-width: 1000px;
+	margin: 80px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 15px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	font-family: "Poppins", sans-serif;
+}
+
+.sales-filters {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.filter-form {
+	display: flex;
+	gap: 20px;
+	/* space between items */
+	align-items: flex-end;
+	/* aligns inputs and button nicely */
+	flex-wrap: wrap;
+	/* wraps to next line on smaller screens */
+}
+
+.filter-item {
+	display: flex;
+	flex-direction: column;
+	/* label on top of input/select */
+}
+
+.sales-filters input,
+.sales-filters select {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+}
+
+.btn-export {
+	background-color: #b30000;
+	color: white;
+	border: none;
+	padding: 10px 15px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.sales-summary {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 0;
+}
+
+.summary-card {
+	flex: 1;
+	text-align: center;
+	background-color: #f9f9f9;
+	border-radius: 12px;
+	padding: 20px;
+	margin: 5px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sales-table table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 15px;
+}
+
+.sales-table th,
+.sales-table td {
+	border: 1px solid #eee;
+	padding: 12px;
+	text-align: center;
+}
+
+.sales-table th {
+	background: #b30000;
+	color: #fff;
+}
+
+/* ============================================================ TEXT GRADIENT EFFECT ============================================================ */
+.text-gradient {
+	background: linear-gradient(90deg, #ff005c, #00d4ff, #fffa65);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent !important;
+	animation: hueRotate 5s infinite linear;
+}
+
+@keyframes hueRotate {
+	from {
+		filter: hue-rotate(0deg);
+	}
+
+	to {
+		filter: hue-rotate(360deg);
+	}
+}
+
+/* ============================================================ RGB GLOW AROUND IMAGE ============================================================ */
+.rgb-glow {
+	width: 320px;
+	height: 320px;
+	border-radius: 50%;
+	background: radial-gradient(circle, #ff005c, #00d4ff, #fffa65);
+	filter: blur(80px);
+	opacity: 0.6;
+	animation: pulseGlow 4s infinite alternate;
+	z-index: 1;
+}
+
+@keyframes pulseGlow {
+	0% {
+		transform: scale(1);
+		opacity: 0.6;
+	}
+
+	100% {
+		transform: scale(1.3);
+		opacity: 0.9;
+	}
+}
+
+/* ============================================================ BUTTON GLOW EFFECT ============================================================ */
+.glow-btn {
+	position: relative;
+	overflow: hidden;
+	transition: all 0.3s ease-in-out;
+	box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.glow-btn::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(120deg,
+			transparent,
+			rgba(255, 255, 255, 0.4),
+			transparent);
+	transition: all 0.5s;
+}
+
+.glow-btn:hover::before {
+	left: 100%;
+}
+
+.glow-btn:hover {
+	box-shadow: 0 0 25px rgba(255, 0, 92, 0.6), 0 0 40px rgba(0, 212, 255, 0.5);
+	transform: translateY(-2px);
+}
+
+/* ============================================================ RESPONSIVE FIX ============================================================ */
+@media (max-width: 768px) {
+	.rgb-glow {
+		width: 220px;
+		height: 220px;
+		filter: blur(60px);
+	}
+}
+
+@keyframes hueRotate {
+	from {
+		filter: hue-rotate(0deg);
+	}
+
+	to {
+		filter: hue-rotate(360deg);
+	}
+}
+
+.order-section table {
+	border-radius: 12px;
+}
+
+td[rowspan] {
+	vertical-align: middle;
+	text-align: center;
+	font-weight: bold;
+}
+
+.table-custom tbody td:hover {
+	background-color: #a3a3a3;
+	/* light gray */
+	transition: all 0.1s ease-in-out;
+}
+
+.btn-outline-primary:hover {
+	background-color: #0d6efd;
+	/* keep Bootstrap blue */
+	color: #fff;
+	transform: scale(1);
+	/* very subtle scaling */
+	box-shadow: 0 2px 6px rgba(13, 110, 253, 0.3);
+	/* soft shadow */
+}
+
+.profile-page {
+	display: flex;
+	flex-direction: row;
+}
+
+.test {
+	width: 250px;
+	background-color: #f0f0f0;
+	padding: 15px;
+	position: sticky;
+	top: 0;
+	height: fit-content;
+}
+
+
+main {
+	flex: 1;
+	padding: 15px;
+}
