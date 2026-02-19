@@ -708,7 +708,7 @@ class Order_m extends CI_Model
 			" AND phone.brand = " . $this->db->escape($brand) . "" :
 			"";
 
-		$sql = "bla";
+		$sql = "wutoh";
 		// date filter
 		$sql .= !empty($date) ?
 			" AND orders.order_date >= " . $this->db->escape($date) . "" :
