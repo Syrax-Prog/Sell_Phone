@@ -509,7 +509,6 @@ class Order_m extends CI_Model
 		return $query->result();
 	}
 
-
 	public function get_all_order_item()
 	{
 		$sql = "SELECT `order_item`.*, `phone`.*, `orders`.`order_date` FROM `order_item`
@@ -760,7 +759,7 @@ class Order_m extends CI_Model
 		if (!empty($date)) {
 			$date = $this->db->escape($date);
 			$sql .= " AND `orders`.`order_date` >= $date";
-			
+
 		} else {
 			$sql .= " 	AND YEAR(`orders`.`order_date`) = YEAR(CURDATE())
 						AND MONTH(`orders`.`order_date`) = MONTH(CURDATE())";

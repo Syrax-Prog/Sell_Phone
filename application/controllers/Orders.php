@@ -15,7 +15,6 @@ class Orders extends CI_Controller
 		$this->load->model('Review_m');
 	}
 
-
 	public function index()
 	{
 		$status = $this->input->get('status');
@@ -29,6 +28,7 @@ class Orders extends CI_Controller
 		}, $data);
 
 		$data['order'] = $this->Order_m->get_order_items($data);
+
 		$data['review'] = $this->Review_m->get_review_status();
 
 		

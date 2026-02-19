@@ -90,6 +90,7 @@
 		</div>
 	</div>
 </div>
+
 <style>
 	.card:hover {
 		box-shadow: none !important;
