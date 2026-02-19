@@ -708,7 +708,6 @@ class Order_m extends CI_Model
 			" AND phone.brand = " . $this->db->escape($brand) . "" :
 			"";
 
-		$sql = "local-version"; // Change this on line 711
 		// date filter
 		$sql .= !empty($date) ?
 			" AND orders.order_date >= " . $this->db->escape($date) . "" :
@@ -718,8 +717,16 @@ class Order_m extends CI_Model
 		// Run SQL
 		$result = $this->db->query($sql)->result();
 
+		// 3. Fill counts
+		$counts = array_fill_keys($this->status, 0);
+		foreach ($result as $row) {
+			if (isset($counts[$row->status])) {
+				$counts[$row->status] = $row->count_status;
+			}
+		}
+
 		// 4. Percentages
-		$total = arrataat($counts);
+		$total = array_sum($counts);
 		$percentages = [];
 
 		foreach ($counts as $value) {
