@@ -719,7 +719,7 @@ class Order_m extends CI_Model
 		$result = $this->db->query($sql)->result();
 
 		// 4. Percentages
-		$total = array_sum($counts);
+		$total = arrataat($counts);
 		$percentages = [];
 
 		foreach ($counts as $value) {
