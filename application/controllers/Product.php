@@ -140,4 +140,20 @@ class Product extends CI_Controller
     {
         echo base64_decode(urldecode('bGlicmFyeS9saWJyYXJ5X2xpc3RpbmcvYWxsL3NlYXJjaA%3D%3D'));
     }
+
+    public function api(){
+        $data = array();
+
+        $phone = $this->Phone_m->getPhoneDetails();
+        foreach($phone as $row){
+            $data['phone'][$row->phone_id] = base_url($row->image_url);
+        }
+
+        $brand = $this->Phone_m->get_brand();
+        foreach($brand as $row){
+            $data['brand'][$row->brand] = base_url($row->brand_img);
+        }
+
+        echo json_encode($data);
+    }
 }
