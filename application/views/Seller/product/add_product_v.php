@@ -16,7 +16,7 @@
     </div>
 
     <!-- Add Product Form -->
-    <form action="<?php echo base_url('Product/add'); ?>" method="POST" enctype="multipart/form-data">
+    <form action="<?php echo base_url('Product/add'); ?>" method="POST" enctype="multipart/form-data" style="padding-bottom:30px;">
         <div class="rounded gy-4">
             <div class="row g-4">
 

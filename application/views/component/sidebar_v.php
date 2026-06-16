@@ -117,5 +117,11 @@
                     <span>Logout</span>
                 </li>
             </a>
+            <a href="<?php echo base_url() . "test" ?>" style="text-decoration: none;">
+                <li class="nav-item">
+                    <span class="nav-icon"><i class="bi bi-airplane-engines"></i></span>
+                    <span>Experiment</span>
+                </li>
+            </a>
         </ul>
     </aside>

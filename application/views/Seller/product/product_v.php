@@ -81,19 +81,54 @@
             <div class="col-auto d-flex align-items-center">
 
                 <!-- Search Form -->
-                <form method="GET" action="<?php echo site_url('Product/index') ?>" class="d-flex me-3" id="form1">
-                    <input type="text" name="search" class="form-control" placeholder="Search phones..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>" style="width: 400px;">
-                    <button class="btn btn-outline-secondary ms-2" type="submit">🔍</button>
-                </form>
+                <form method="get" action="<?php echo site_url('Product/index') ?>"
+                    class="d-flex align-items-center bg-light p-2 rounded shadow-sm" id="form1">
 
-                <h1>|</h1>
+                    <div class="input-group">
+
+                        <select name="filter_by" class="form-select" style="width: 150px;" required>
+                            <option value="" <?php echo (!isset($_GET['filter_by']) || $_GET['filter_by'] == '') ? 'selected' : '' ?> disabled>Filter By...</option>
+                            <option value="phone_name" <?php echo (isset($_GET['filter_by']) && $_GET['filter_by'] == 'phone_name') ? 'selected' : '' ?>>Phone Name</option>
+                            <option value="brand" <?php echo (isset($_GET['filter_by']) && $_GET['filter_by'] == 'brand') ? 'selected' : '' ?>>Brand</option>
+                            <option value="description" <?php echo (isset($_GET['filter_by']) && $_GET['filter_by'] == 'description') ? 'selected' : '' ?>>Description</option>
+                            <option value="storage" <?php echo (isset($_GET['filter_by']) && $_GET['filter_by'] == 'storage') ? 'selected' : '' ?>>Storage</option>
+                            <option value="ram" <?php echo (isset($_GET['filter_by']) && $_GET['filter_by'] == 'ram') ? 'selected' : '' ?>>Ram</option>
+                            <option value="battery" <?php echo (isset($_GET['filter_by']) && $_GET['filter_by'] == 'battery') ? 'selected' : '' ?>>Battery</option>
+                            <option value="os" <?php echo (isset($_GET['filter_by']) && $_GET['filter_by'] == 'os') ? 'selected' : '' ?>>OS</option>
+                        </select>
+
+                        <select name="filter_type" class="form-select"
+                            style="width: 170px;">
+                            <option value="equal" <?php echo (isset($_GET['filter_type']) && $_GET['filter_type'] == 'equal') ? 'selected' : '' ?>>Equal (=)</option>
+                            <option value="like" <?php echo (isset($_GET['filter_type']) && $_GET['filter_type'] == 'like' || !isset($_GET['filter_type'])) ? 'selected' : '' ?>>Contains</option>
+                            <option value="notEqual" <?php echo (isset($_GET['filter_type']) && $_GET['filter_type'] == 'notEqual') ? 'selected' : '' ?>>Not Equal</option>
+                            <option value="notLike" <?php echo (isset($_GET['filter_type']) && $_GET['filter_type'] == 'notLike') ? 'selected' : '' ?>>Not Containing</option>
+                        </select>
+
+                        <input type="text" name="search" class="form-control" placeholder="Search phones..."
+                            value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>"
+                            style="width: 700px;">
+
+                        <button class="btn btn-primary px-4" type="submit">
+                            <i class="bi bi-search"></i> Search
+                        </button>
+
+                    </div>
+
+                    <?php if (isset($_GET['search'])): ?>
+                        <a href="<?php echo site_url('Product/index') ?>"
+                            class="btn btn-link btn-sm text-decoration-none ms-2">Clear</a>
+                    <?php endif; ?>
+                </form>
 
                 <!-- Notification Dropdown -->
                 <div class="dropdown me-3">
-                    <button type="button" class="btn position-relative border-0 bg-transparent" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="btn position-relative border-0 bg-transparent"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="position-relative d-inline-block">
                             🔔
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 <?php echo $low + $out ?>
                             </span>
                         </div>
@@ -109,9 +144,11 @@
                             } else
                                 continue;
                             ?>
-                            <a href="<?php echo site_url('Product/index?search=' . urlencode($p->phone_name)); ?>" style="text-decoration: none;">
+                            <a href="<?php echo site_url('Product/index?search=' . urlencode($p->phone_name)); ?>"
+                                style="text-decoration: none;">
                                 <li class="dropdown-item d-flex">
-                                    <span style="width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><?php echo $p->phone_name ?></span>
+                                    <span
+                                        style="width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><?php echo $p->phone_name ?></span>
                                     <span style="width: 100px; text-align: center;"><?php echo $msg ?></span>
                                     <span style="width: 50px; text-align: right;"><?php echo $p->stock ?></span>
                                 </li>
@@ -123,7 +160,7 @@
         </div>
     </div>
 
-    <div id="pl">awal</div>
+    <div id="pl"></div>
 
     <!-- Product Table -->
     <div class="card shadow-sm border border-primary-subtle shadow">
@@ -145,7 +182,8 @@
                     <?php foreach ($phones as $p) { ?>
                         <tr>
                             <td class="d-flex align-items-center gap-2">
-                                <img src="<?php echo base_url() . $p->image_url; ?>" class="rounded border" style="width: 50; height:50; object-fit: fill;">
+                                <img src="<?php echo base_url() . $p->image_url; ?>" class="rounded border"
+                                    style="width: 50; height:50; object-fit: fill;">
                                 <div>
                                     <div class="fw-semibold"><?php echo $p->phone_name; ?></div>
                                     <small class="text-muted"><?php echo $p->brand; ?></small>
@@ -157,7 +195,8 @@
                                 </div>
                             </td>
                             <td># <?php echo $p->phone_id; ?></td>
-                            <td data-order="<?php echo $p->current_price; ?>" class="fw-bold">RM <?php echo number_format($p->current_price, 2); ?></td>
+                            <td data-order="<?php echo $p->current_price; ?>" class="fw-bold">RM
+                                <?php echo number_format($p->current_price, 2); ?></td>
                             <td data-order="<?php echo $p->stock; ?>">
                                 <?php if ($p->stock_status === 'Out of Stock') { ?>
                                     <span class="badge bg-danger">Out Of Stock</span>
@@ -182,16 +221,20 @@
                                 $btn = "danger";
                             } ?>
 
-                            <td><span class="badge <?php echo $badge; ?>"><i class="bi <?php echo $icon; ?> me-1"></i><?php echo $text; ?></span></td>
+                            <td><span class="badge <?php echo $badge; ?>"><i
+                                        class="bi <?php echo $icon; ?> me-1"></i><?php echo $text; ?></span></td>
                             <td data-order="<?php echo $p->total_sold; ?>"><?php echo $p->total_sold; ?> sold</td>
 
                             <td class="text-nowrap">
-                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editPhone<?php echo $p->phone_id; ?>" title="Update">
+                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#editPhone<?php echo $p->phone_id; ?>" title="Update">
                                     <i class="bi bi-pencil"></i>
                                 </button>
 
-                                <a href="<?php echo base_url('Product/activate_deactivate/' . $p->phone_id . '/' . $p->is_active); ?>">
-                                    <button class="btn btn-outline-<?php echo $btn; ?> btn-sm" title="<?php echo $status; ?>">
+                                <a
+                                    href="<?php echo base_url('Product/activate_deactivate/' . $p->phone_id . '/' . $p->is_active); ?>">
+                                    <button class="btn btn-outline-<?php echo $btn; ?> btn-sm"
+                                        title="<?php echo $status; ?>">
                                         <i class="bi bi-power"></i>
                                     </button>
                                 </a>
@@ -222,11 +265,14 @@
 
                             <div class="mb-3">
                                 <div style="display: flex; flex-direction:column;">
-                                    <img src="<?php echo base_url() . $p->image_url; ?>" class="img-fluid rounded mb-4 shadow-sm" alt="Image" style="width: 300px; margin-left:250px; object-fit: contain;">
+                                    <img src="<?php echo base_url() . $p->image_url; ?>"
+                                        class="img-fluid rounded mb-4 shadow-sm" alt="Image"
+                                        style="width: 300px; margin-left:250px; object-fit: contain;">
 
                                     <div class="col-md-6">
                                         <label class="form-label fw-semibold d-block">Phone Image</label>
-                                        <input type="file" id="imageUpload1" name="image_url" accept="image/png, image/jpeg, image/jpg" class="form-control-file">
+                                        <input type="file" id="imageUpload1" name="image_url"
+                                            accept="image/png, image/jpeg, image/jpg" class="form-control-file">
                                     </div>
                                 </div>
                             </div>
@@ -235,21 +281,24 @@
                                 <label for="phone_name_<?php echo $p->phone_id; ?>" class="form-label">
                                     Phone Name <span class="text-danger">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="phone_name_<?php echo $p->phone_id; ?>" name="phone_name" value="<?php echo $p->phone_name; ?>" required>
+                                <input type="text" class="form-control" id="phone_name_<?php echo $p->phone_id; ?>"
+                                    name="phone_name" value="<?php echo $p->phone_name; ?>" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="price_<?php echo $p->phone_id; ?>" class="form-label">
                                     Price (RM) <span class="text-danger">*</span>
                                 </label>
-                                <input type="number" step="0.01" class="form-control" id="price_<?php echo $p->phone_id; ?>" name="current_price" value="<?php echo $p->current_price; ?>" required>
+                                <input type="number" step="0.01" class="form-control" id="price_<?php echo $p->phone_id; ?>"
+                                    name="current_price" value="<?php echo $p->current_price; ?>" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="price_<?php echo $p->phone_id; ?>" class="form-label">
                                     Current Stock <span class="text-danger">*</span>
                                 </label>
-                                <input type="number" class="form-control" id="stock_<?php echo $p->phone_id; ?>" name="stock" value="<?php echo $p->stock; ?>" required>
+                                <input type="number" class="form-control" id="stock_<?php echo $p->phone_id; ?>"
+                                    name="stock" value="<?php echo $p->stock; ?>" required>
                             </div>
 
                             <div class="border rounded p-3 bg-light">

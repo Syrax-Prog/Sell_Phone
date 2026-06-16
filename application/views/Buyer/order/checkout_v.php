@@ -1,5 +1,5 @@
 <!-- Bootstrap Checkout Page -->
-<div class="container-fluid py-4" style="margin-top: 70px;">
+<div class="container-fluid py-4">
 	<div class="container">
 
 		<!-- Page Header -->

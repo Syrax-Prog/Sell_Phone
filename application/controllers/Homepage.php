@@ -17,9 +17,14 @@ class Homepage extends CI_Controller
 
 	public function index()
 	{
-		$query = $this->input->get('query');
+		$search = $this->input->get();
 
-		$data['phone'] = $query ? $this->Phone_m->searchPhones($query) : $this->Phone_m->getPhoneDetails();
+		if (!empty($search)) {
+			$data['phone'] = $this->Phone_m->searchPhones($search);
+		} else {
+			$data['phone'] = $this->Phone_m->getPhoneDetails();
+		}
+
 		$data['brand'] = $this->get_brand();
 
 		$this->load->view('component/navbar_v');

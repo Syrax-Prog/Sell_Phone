@@ -8,11 +8,8 @@ class Test extends CI_Controller
     }
 
     public function test_api(){
-        $sql = "SELECT * FROM `user`";
-
-        echo json_encode($this->db->query($sql)->result_array());
+        
     }
-
     public function yo()
     {
         echo 'sxs';

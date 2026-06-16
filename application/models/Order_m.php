@@ -533,7 +533,7 @@ class Order_m extends CI_Model
 
 		return "$order_id || $status"; // number of rows updated
 	}
-
+	
 	public function get_status($order_id = "", $new_status = "")
 	{
 		// Get the current status from the database

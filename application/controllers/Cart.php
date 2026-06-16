@@ -16,6 +16,11 @@ class Cart extends CI_Controller
 
 	public function index()
 	{
+		if(isset($this->id) && $this->id == ''){
+			$this->session->set_flashdata('message', 'You must be logged in to view cart');
+			redirect('Login_page');
+		}
+
 		$this->Cart_m->active_status(); //takut3 miss update is_active bila phone stock = 0.. (update kat database direct)
 		$data['cart_item'] = $this->Cart_m->get_cart_items();
 

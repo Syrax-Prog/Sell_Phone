@@ -7,12 +7,6 @@ class Test extends CI_Controller
         parent::__construct();
     }
 
-    public function test_api(){
-        $sql = "SELECT * FROM `user`";
-
-        echo json_encode($this->db->query($sql)->result_array());
-    }
-
     public function yo()
     {
         echo 'sxs';

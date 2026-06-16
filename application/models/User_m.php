@@ -184,6 +184,9 @@ class User_m extends CI_Model
 
 	public function check_user_exist()
 	{
+		if ($this->id == '') {
+			return 0;
+		}
 		$sql = "SELECT * FROM user WHERE user_id = $this->id";
 		$query = $this->db->query($sql);
 

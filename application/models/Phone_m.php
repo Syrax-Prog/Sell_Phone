@@ -32,13 +32,49 @@ class Phone_m extends CI_Model
 
 	public function getPhoneDetails($allPhone = "", $limit = 10, $offset = 0, $search = '')
 	{
+		// note -- need something to trigger either the user searched again or not (maybe later)
+		// kiv system use button 'search'... when button clicked, use new value
+		// else use stored in session
+
 		if ($search != '') {
-			$search = $this->db->escape_like_str(trim($search));
-			$search = " WHERE `p`.`phone_name` LIKE '%{$search}%' OR `p`.`phone_id` LIKE '%{$search}%' OR `p`.`brand` LIKE '%{$search}%'";
+			$filter_by = $this->input->get('filter_by');
+			$val = $this->input->get('search');
+			$filter_type = $this->input->get('filter_type');
+
+			switch ($filter_type) {
+				case 'like':
+					$search = " WHERE `p`.`$filter_by` LIKE '%$val%'";
+					break;
+
+				case 'equal':
+					$search = " WHERE `p`.`$filter_by` = '$val'";
+					break;
+
+				case 'notEqual':
+					$search = " WHERE `p`.`$filter_by` != '$val'";
+					break;
+
+				case 'notLike':
+					$search = " WHERE `p`.`$filter_by` NOT LIKE '%$val%'";
+					break;
+
+				default:
+					$search = '';
+					break;
+			}
 		}
 
 		if (empty($allPhone)) {
-			$sql = "SELECT * FROM `phone` WHERE `stock` > 0 AND `is_active` = 1";
+			$sql = "SELECT 
+						p.*, 
+						COUNT(coi.phone_id) AS total_sold
+					FROM `phone` p
+					LEFT JOIN `order_item` coi 
+						ON p.phone_id = coi.phone_id 
+						AND coi.is_cancelled = 0
+					WHERE p.stock > 0 AND p.is_active = 1
+					GROUP BY p.phone_id
+					ORDER BY total_sold DESC;";
 
 			$query = $this->db->query($sql);
 
@@ -63,10 +99,8 @@ class Phone_m extends CI_Model
 						LEFT JOIN `order_item` AS `oi` ON `oi`.`phone_id` = `p`.`phone_id`
 						LEFT JOIN `orders` AS `o` ON `o`.`order_id` = `oi`.`order_id`
 						" . $search . "
-						GROUP BY `p`.`phone_id`
-						ORDER BY `p`.`phone_id` DESC
-					";
-
+						GROUP BY `p`.`phone_id`";
+			$sql .= " ORDER BY `p`.`phone_id` DESC ";
 			$sql .= " LIMIT " . (int) $offset . ", " . (int) $limit . "";
 			$query = $this->db->query($sql);
 		}
@@ -75,7 +109,7 @@ class Phone_m extends CI_Model
 
 	public function get_brand()
 	{
-		$sql = "SELECT DISTINCT(`brand`) FROM `phone`";
+		$sql = "SELECT * FROM `brand`";
 		$query = $this->db->query($sql);
 
 		return $query->result();
@@ -90,10 +124,15 @@ class Phone_m extends CI_Model
 	// 	return $query->result();
 	// }
 
-	public function searchphones($query = "")
+	public function searchphones($data = array())
 	{
-		$sql_search = "SELECT * FROM `phone` WHERE `is_active` = 1 AND (`phone_name` LIKE '%{$query}%' OR `brand` LIKE '%{$query}%')";
-		$query = $this->db->query($sql_search);
+		$sql = "SELECT * FROM `phone` WHERE `is_active` = 1 AND ( `" . $data['search_type'] . "` LIKE '%" . $this->db->escape_like_str(trim($data['search_value'])) . "%')";
+
+		// --> searching using json.. dynamic spec
+		// $data['search_type'] = "JSON_VALUE(specs, '$." . $data['search_type'] . "')";
+		// $sql = "SELECT * FROM `phone` WHERE `is_active` = 1 AND (" . $data['search_type'] . " LIKE '%" . $this->db->escape_like_str(trim($data['search_value'])) . "%')";
+
+		$query = $this->db->query($sql);
 
 		return $query->result();
 	}
